@@ -1,6 +1,7 @@
 import React from "react";
 import "./home.css";
 import ProfileSide from "../../components/profileSide/ProfileSide";
+import PostSide from "../../components/postSide/PostSide";
 
 const Home = () => {
   return (
@@ -8,7 +9,7 @@ const Home = () => {
       <div className="profileSide">
         <ProfileSide />
       </div>
-      <div className="postSide">Post</div>
+      <PostSide />
       <div className="rightSide">Right</div>
     </div>
   );

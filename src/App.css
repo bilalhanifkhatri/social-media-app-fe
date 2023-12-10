@@ -12,7 +12,7 @@
   --photo: #4cb256;
   --video: #4a4eb7;
   --location: #ef5757;
-  --shedule: #e1ae4a;
+  --schedule: #e1ae4a;
 }
 
 .App {
@@ -29,4 +29,27 @@
   width: 22rem;
   height: 14rem;
   filter: blur(72px);
+}
+
+.primary-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 0.5rem;
+  background: var(--buttonBg);
+  transition: all 100ms ease-out;
+  border: 2px solid transparent;
+  /* border: none; */
+}
+
+.primary-btn:hover {
+  color: var(--orange);
+  border: 2px solid var(--orange);
+  cursor: pointer;
+  background: transparent;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
