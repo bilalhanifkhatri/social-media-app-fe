@@ -46,7 +46,7 @@ const Login = () => {
               margin: "auto",
             }}
           >
-            Create an account SignUp!
+            Don't have an account SignUp
           </span>
           <button className="primary-btn info-button" type="submit">
             Login
