@@ -49,6 +49,10 @@
   cursor: pointer;
   background: transparent;
 }
+.primary-btn:disabled {
+  pointer-events: none;
+  background: silver;
+}
 
 ::-webkit-scrollbar {
   display: none;
