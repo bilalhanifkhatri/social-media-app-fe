@@ -1,40 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./posts.css";
-import { PostsData } from "../../Data/PostsData";
-import Comment from "../../img/comment.png";
-import Heart from "../../img/like.png";
-import NotLike from "../../img/notlike.png";
-import Share from "../../img/share.png";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTimelinePosts } from "../../redux/actions/postActions";
+import Post from "../post/Post";
 
 const Posts = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state?.authReducer?.authData);
+  const { posts, loading } = useSelector((state) => state?.postReducer);
+
+  useEffect(() => {
+    dispatch(fetchTimelinePosts(user?._id));
+  }, [dispatch, user]);
   return (
     <div className="Posts">
-      {PostsData?.map((post, index) => {
-        return (
-          <div key={index} className="post">
-            <img src={post?.img} alt="" />
-            <div className="postReact">
-              <img src={post?.liked ? Heart : NotLike} alt="" />
-              <img src={Comment} alt="" />
-              <img src={Share} alt="" />
-            </div>
-            <span
-              style={{
-                color: "var(--gray)",
-                fontSize: "12px",
-              }}
-            >
-              {post?.likes} Likes
-            </span>
-            <div className="detail">
-              <span>
-                <strong>{post?.name}</strong>
-              </span>
-              <span> {post?.desc}</span>
-            </div>
-          </div>
-        );
-      })}
+      {loading ? (
+        <>Loading...</>
+      ) : (
+        posts?.map((post, index) => {
+          return <Post post={post} key={index} />;
+        })
+      )}
     </div>
   );
 };
