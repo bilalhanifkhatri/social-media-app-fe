@@ -3,7 +3,7 @@ import API from "../../services/axiosServices";
 export const signUp = (data) => async (dispatch) => {
   dispatch({ type: "AUTH_LOGIN_REQUEST" });
   try {
-    const res = await API.post("auth/signup", data);
+    const res = await API.post("auth/register", data);
     dispatch({ type: "AUTH_LOGIN_SUCCESS", payload: res?.data?.data });
     return res?.data;
   } catch (error) {

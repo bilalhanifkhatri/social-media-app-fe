@@ -51,6 +51,7 @@ const Auth = () => {
         setIsConfirmPassword(false);
       } else {
         const res = dispatch(signUp(data));
+        resetForm();
         console.log("res: ", res);
       }
     } else {
@@ -60,6 +61,7 @@ const Auth = () => {
           password: data?.password,
         })
       );
+      resetForm();
       console.log("res: ", res);
     }
   };
