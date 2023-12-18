@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./postShare.css";
-import ProfileImage from "../../img/profileImg.jpg";
 import {
   UilScenery,
   UilPlayCircle,
@@ -9,7 +8,10 @@ import {
   UilSchedule,
   UilTimes,
 } from "@iconscout/react-unicons";
-import { uploadFile } from "../../redux/actions/uploadAction";
+import {
+  fetchImageURLByFileName,
+  uploadFile,
+} from "../../redux/actions/uploadAction";
 import { uploadPost } from "../../redux/actions/postActions";
 
 const PostShare = () => {
@@ -57,7 +59,14 @@ const PostShare = () => {
   };
   return (
     <div className="PostShare">
-      <img src={ProfileImage} alt="" />
+      <img
+        src={
+          user?.profileImage
+            ? fetchImageURLByFileName(user?.profileImage)
+            : fetchImageURLByFileName("defaultProfile.jpg")
+        }
+        alt=""
+      />
       <div>
         <input
           type="text"

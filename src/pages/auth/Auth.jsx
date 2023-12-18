@@ -52,7 +52,6 @@ const Auth = () => {
       } else {
         const res = dispatch(signUp(data));
         resetForm();
-        console.log("res: ", res);
       }
     } else {
       const res = dispatch(
@@ -62,7 +61,6 @@ const Auth = () => {
         })
       );
       resetForm();
-      console.log("res: ", res);
     }
   };
 
