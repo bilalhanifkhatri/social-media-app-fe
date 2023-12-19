@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { fetchImageURLByFileName } from "../../redux/actions/uploadAction";
 
 const ProfileCard = ({ profilePage = false }) => {
-  const { user } = useSelector((state) => state?.authReducer?.authData);
+  const user = useSelector((state) => state?.authReducer?.authData?.user);
   const { posts } = useSelector((state) => state?.postReducer);
   return (
     <div className="ProfileCard">

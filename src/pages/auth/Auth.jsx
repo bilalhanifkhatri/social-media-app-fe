@@ -43,18 +43,18 @@ const Auth = () => {
   };
 
   // handle form submit for both login and signup
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isSignUp) {
       if (data?.password !== data?.confirmPassword) {
         setIsConfirmPassword(false);
       } else {
-        const res = dispatch(signUp(data));
+        await dispatch(signUp(data));
         resetForm();
       }
     } else {
-      const res = dispatch(
+      await dispatch(
         login({
           username: data?.username,
           password: data?.password,

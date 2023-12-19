@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { likePost } from "../../redux/actions/postActions";
 
 const Post = ({ post }) => {
-  const { user } = useSelector((state) => state?.authReducer?.authData);
+  const user = useSelector((state) => state?.authReducer?.authData?.user);
   const [liked, setLiked] = useState(post?.likes?.includes(user?._id));
   const [likes, setLikes] = useState(post?.likes?.length);
   const dispatch = useDispatch();

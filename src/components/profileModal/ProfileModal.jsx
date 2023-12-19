@@ -37,7 +37,7 @@ const ProfileModal = ({ opened, setOpened, data = {} }) => {
       let form = new FormData();
       const fileName = Date.now() + coverImage?.name;
       form.append("name", fileName);
-      form.append("file", profileImage);
+      form.append("file", coverImage);
       userData.coverPic = fileName;
       try {
         await dispatch(uploadFile(form));

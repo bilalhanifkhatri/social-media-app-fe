@@ -4,13 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { followUser, unFollowUser } from "../../redux/actions/userActions";
 
 const FollowerUser = ({ profile }) => {
-  const { user } = useSelector((state) => state?.authReducer?.authData);
+  const user = useSelector((state) => state?.authReducer?.authData?.user);
   const [following, setFollowing] = useState(
-    profile?.followers?.include(user?._id)
+    profile?.followers?.includes(user?._id)
   );
   const dispatch = useDispatch();
+
   const handleFollow = async () => {
-    await dispatch(unFollowUser(user?._id, profile));
+    if (following) {
+      await dispatch(unFollowUser(user?._id, profile));
+      setFollowing((val) => !val);
+    } else {
+      await dispatch(followUser(user?._id, profile));
+      setFollowing((val) => !val);
+    }
   };
   return (
     <div className="follower">
@@ -30,7 +37,7 @@ const FollowerUser = ({ profile }) => {
         </div>
       </div>
       <button className="primary-btn fc-button" onClick={handleFollow}>
-        {following ? "Follow" : "Unfollow"}
+        {following ? "unfollow" : "Follow"}
       </button>
     </div>
   );

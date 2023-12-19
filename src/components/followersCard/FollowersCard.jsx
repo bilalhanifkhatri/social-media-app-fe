@@ -6,7 +6,7 @@ import { fetchUsers } from "../../redux/actions/userActions";
 
 const FollowersCard = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state?.authReducer?.authData);
+  const user = useSelector((state) => state?.authReducer?.authData?.user);
   const [profiles, setProfile] = useState([]);
   useEffect(() => {
     const fetching = async () => {

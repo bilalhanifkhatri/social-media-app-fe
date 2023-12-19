@@ -5,7 +5,7 @@ import Home from "./pages/home/Home";
 import { useSelector } from "react-redux";
 import Profile from "./pages/profile/Profile";
 function App() {
-  const { user } = useSelector((state) => state?.authReducer?.authData);
+  const user = useSelector((state) => state?.authReducer?.authData?.user);
   return (
     <div className="App">
       <div
