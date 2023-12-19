@@ -41,6 +41,32 @@ const authReducer = (
         loading: false,
         error: true,
       };
+    case "FOLLOW_USER":
+      return {
+        ...state,
+        authData: {
+          ...state?.authData,
+          user: {
+            ...state?.authData?.user,
+            followings: [...state?.authData?.user?.followings, action?.payload],
+          },
+        },
+      };
+    case "UNFOLLOW_USER":
+      return {
+        ...state,
+        authData: {
+          ...state?.authData,
+          user: {
+            ...state?.authData?.user,
+            followings: [
+              ...state?.authData?.user?.followings?.filter(
+                (personId) => personId !== action?.payload
+              ),
+            ],
+          },
+        },
+      };
     default:
       return state;
   }
