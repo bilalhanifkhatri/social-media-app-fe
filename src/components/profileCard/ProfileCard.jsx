@@ -5,23 +5,23 @@ import { useSelector } from "react-redux";
 import { fetchImageURLByFileName } from "../../redux/actions/uploadAction";
 
 const ProfileCard = ({ profilePage = false }) => {
-  const user = useSelector((state) => state?.authReducer?.authData);
+  const { user } = useSelector((state) => state?.authReducer?.authData);
   const { posts } = useSelector((state) => state?.postReducer);
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
         <img
           src={
-            user?.coverImage
-              ? fetchImageURLByFileName(user?.coverImage)
+            user?.coverPic
+              ? fetchImageURLByFileName(user?.coverPic)
               : fetchImageURLByFileName("defaultCover.jpeg")
           }
           alt=""
         />
         <img
           src={
-            user?.profileImage
-              ? fetchImageURLByFileName(user?.profileImage)
+            user?.profilePic
+              ? fetchImageURLByFileName(user?.profilePic)
               : fetchImageURLByFileName("defaultProfile.jpg")
           }
           alt=""

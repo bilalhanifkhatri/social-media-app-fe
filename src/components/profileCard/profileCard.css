@@ -18,6 +18,9 @@
 
 .ProfileImages > img:nth-of-type(1) {
   width: 100%;
+  max-height: 14rem;
+  background-position: center;
+  object-fit: cover;
 }
 .ProfileImages > img:nth-of-type(2) {
   width: 6rem;

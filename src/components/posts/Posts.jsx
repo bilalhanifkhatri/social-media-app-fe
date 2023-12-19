@@ -6,7 +6,7 @@ import Post from "../post/Post";
 
 const Posts = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state?.authReducer?.authData);
+  const { user } = useSelector((state) => state?.authReducer?.authData);
   const { posts, loading } = useSelector((state) => state?.postReducer);
 
   useEffect(() => {

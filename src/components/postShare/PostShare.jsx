@@ -16,7 +16,7 @@ import { uploadPost } from "../../redux/actions/postActions";
 
 const PostShare = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state?.authReducer?.authData);
+  const { user } = useSelector((state) => state?.authReducer?.authData);
   const loading = useSelector((state) => state?.postReducer?.loading);
   const [image, setImage] = useState(null);
   const imageRef = useRef();
@@ -61,8 +61,8 @@ const PostShare = () => {
     <div className="PostShare">
       <img
         src={
-          user?.profileImage
-            ? fetchImageURLByFileName(user?.profileImage)
+          user?.profilePic
+            ? fetchImageURLByFileName(user?.profilePic)
             : fetchImageURLByFileName("defaultProfile.jpg")
         }
         alt=""

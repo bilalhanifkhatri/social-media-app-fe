@@ -7,8 +7,8 @@ const authReducer = (
   action
 ) => {
   switch (action.type) {
+    case "UPDATE_USER_REQUEST":
     case "AUTH_LOGIN_REQUEST":
-    case "FETCH_USER_BY_ID_REQUEST":
     case "AUTH_SIGNUP_REQUEST":
       return {
         ...state,
@@ -17,7 +17,7 @@ const authReducer = (
       };
     case "AUTH_LOGIN_SUCCESS":
     case "AUTH_SIGNUP_SUCCESS":
-    case "FETCH_USER_BY_ID_SUCCESS":
+    case "UPDATE_USER_SUCCESS":
       localStorage.setItem("profile", JSON.stringify(action.payload));
       return {
         ...state,
@@ -35,7 +35,7 @@ const authReducer = (
       };
     case "AUTH_LOGIN_FAILURE":
     case "AUTH_SIGNUP_FAILURE":
-    case "FETCH_USER_BY_ID_FAILURE":
+    case "UPDATE_USER_FAILURE":
       return {
         ...state,
         loading: false,

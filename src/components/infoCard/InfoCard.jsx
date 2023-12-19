@@ -14,18 +14,18 @@ const InfoCard = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const profileUserId = params?.id;
-  const user = useSelector((state) => state?.authReducer?.authData);
+  const { user } = useSelector((state) => state?.authReducer?.authData);
   useEffect(() => {
     const fetching = async () => {
       if (profileUserId === user?._id) {
         setUserProfile(user);
       } else {
         const res = await dispatch(fetchUserById(profileUserId));
-        setUserProfile(user);
+        setUserProfile(res);
       }
     };
     fetching(); // Call fetching here
-  }, [user, profileUserId]);
+  }, [user, profileUserId, dispatch]);
 
   const handleLogout = async () => {
     dispatch(logout());
@@ -44,7 +44,9 @@ const InfoCard = () => {
                 setOpened(true);
               }}
             />
-            {opened && <ProfileModal opened={opened} setOpened={setOpened} />}
+            {opened && (
+              <ProfileModal opened={opened} setOpened={setOpened} data={user} />
+            )}
           </>
         ) : (
           ""
