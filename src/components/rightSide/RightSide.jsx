@@ -13,12 +13,17 @@ const RightSide = () => {
   return (
     <div className="RightSide">
       <div className="navIcons">
-        <Link to={`../home`} style={{ textDecoration: "none", color: "inherit" }}>
+        <Link
+          to={`../home`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
           <img src={Home} alt="" />
         </Link>
         <UilSetting />
         <img src={Noti} alt="" />
-        <img src={Comment} alt="" />
+        <Link to={`../chat`}>
+          <img src={Comment} alt="" />
+        </Link>
       </div>
       <TrendCard />
       <button

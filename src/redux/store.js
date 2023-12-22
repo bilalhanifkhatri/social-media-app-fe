@@ -6,9 +6,11 @@ import {
 import { thunk } from "redux-thunk";
 import authReducer from "./reducers/authReducer";
 import postReducer from "./reducers/postReducer";
+import chatReducer from "./reducers/chatReducer";
 
 const reducers = combineReducers({
   authReducer: authReducer,
+  chatReducer: chatReducer,
   postReducer: postReducer,
 });
 
@@ -31,11 +33,7 @@ const loadStateTOLocalStorage = (store) => {
 };
 const persistedState = loadStateTOLocalStorage();
 
-const store = createStore(
-  reducers,
-  persistedState,
-  applyMiddleware(thunk)
-);
+const store = createStore(reducers, persistedState, applyMiddleware(thunk));
 
 store.subscribe(() => saveStateTOLocalStorage(store.getState()));
 
