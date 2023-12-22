@@ -23,6 +23,7 @@
   object-fit: cover;
 }
 .ProfileImages > img:nth-of-type(2) {
+  object-fit: cover;
   width: 6rem;
   height: 6rem;
   aspect-ratio: 1/1;

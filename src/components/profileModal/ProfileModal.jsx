@@ -22,25 +22,17 @@ const ProfileModal = ({ opened, setOpened, data = {} }) => {
     e.preventDefault();
     let userData = { ...formData };
     if (profileImage) {
-      let form = new FormData();
-      const fileName = Date.now() + profileImage?.name;
-      form.append("name", fileName);
-      form.append("file", profileImage);
-      userData.profilePic = fileName;
       try {
-        await dispatch(uploadFile(form));
+        const res = await dispatch(uploadFile(profileImage));
+        userData.profilePic = res;
       } catch (error) {
         console.log(error?.message);
       }
     }
     if (coverImage) {
-      let form = new FormData();
-      const fileName = Date.now() + coverImage?.name;
-      form.append("name", fileName);
-      form.append("file", coverImage);
-      userData.coverPic = fileName;
       try {
-        await dispatch(uploadFile(form));
+        const res = await dispatch(uploadFile(coverImage));
+        userData.coverPic = res;
       } catch (error) {
         console.log(error?.message);
       }
@@ -57,6 +49,7 @@ const ProfileModal = ({ opened, setOpened, data = {} }) => {
         : setCoverImage(image);
     }
   };
+
   return (
     <>
       <Modal opened={opened} size={"lg"} onClose={() => setOpened(false)}>

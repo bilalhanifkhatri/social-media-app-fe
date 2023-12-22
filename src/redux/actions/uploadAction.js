@@ -1,12 +1,24 @@
-import API from "../../services/axiosServices";
+import { storage } from "../../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const uploadFile = (data) => async (dispatch) => {
   try {
-    const res = await API.post("upload", data);
-    return res?.data;
+    if (data) {
+      const imageRef = ref(storage, "image");
+      await uploadBytes(imageRef, data);
+
+      const imageUrl = await getDownloadURL(imageRef);
+
+      // Parse the URL to extract the token
+      const url = new URL(imageUrl);
+      const token = url.searchParams.get("token");
+
+      return token;
+    }
   } catch (error) {
     console.log(error);
   }
+  return "";
 };
 
 export const fetchImageURLByFileName = (fileName) => {
