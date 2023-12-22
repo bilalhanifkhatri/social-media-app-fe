@@ -62,8 +62,10 @@
   align-self: flex-end;
 }
 
-.auth-ask-link {
+/* .auth-ask-link {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: underline;
+  color: blueviolet;
+} */
