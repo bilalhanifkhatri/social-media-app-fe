@@ -6,7 +6,6 @@ import {
 import { thunk } from "redux-thunk";
 import authReducer from "./reducers/authReducer";
 import postReducer from "./reducers/postReducer";
-import { composeWithDevTools } from "redux-devtools-extension";
 
 const reducers = combineReducers({
   authReducer: authReducer,
@@ -35,7 +34,7 @@ const persistedState = loadStateTOLocalStorage();
 const store = createStore(
   reducers,
   persistedState,
-  composeWithDevTools(applyMiddleware(thunk))
+  applyMiddleware(thunk)
 );
 
 store.subscribe(() => saveStateTOLocalStorage(store.getState()));
