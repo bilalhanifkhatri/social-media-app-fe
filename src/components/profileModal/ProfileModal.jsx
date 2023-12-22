@@ -2,11 +2,11 @@ import { Modal } from "@mantine/core";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { uploadFile } from "../../redux/actions/uploadAction";
+import { deleteImage, uploadFile } from "../../redux/actions/uploadAction";
 import { updateUser } from "../../redux/actions/userActions";
 
 const ProfileModal = ({ opened, setOpened, data = {} }) => {
-  const { password, ...other } = data;
+  const { password, coverPic, profilePic, ...other } = data;
   const [formData, setFormData] = useState(other);
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
@@ -23,16 +23,24 @@ const ProfileModal = ({ opened, setOpened, data = {} }) => {
     let userData = { ...formData };
     if (profileImage) {
       try {
+        const prevImage = data?.profilePic;
         const res = await dispatch(uploadFile(profileImage));
-        userData.profilePic = res;
+        if (res) {
+          userData.profilePic = res;
+          deleteImage(prevImage);
+        }
       } catch (error) {
         console.log(error?.message);
       }
     }
     if (coverImage) {
       try {
+        const prevImage = data?.coverPic;
         const res = await dispatch(uploadFile(coverImage));
-        userData.coverPic = res;
+        if (res) {
+          userData.coverPic = res;
+          deleteImage(prevImage);
+        }
       } catch (error) {
         console.log(error?.message);
       }
